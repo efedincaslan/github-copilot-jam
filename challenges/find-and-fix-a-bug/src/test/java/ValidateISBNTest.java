@@ -35,12 +35,30 @@ class ValidateISBNTest {
 		boolean result = validator.checkISBN("0140449117");
 		assertFalse(result);
 	}
+
+	@Test
+	public void checkInvalid10DigitISBNWithAnX() {
+		ValidateISBN validator = new ValidateISBN();
+		assertThrows(NumberFormatException.class, 
+				() -> {
+					validator.checkISBN("0140449X17");
+				});
+	}
 	
 	@Test
 	public void checkAnInvalid13DigitISBN() {
 		ValidateISBN validator = new ValidateISBN();
 		boolean result = validator.checkISBN("9781853267336");
 		assertFalse(result);
+	}
+
+	@Test
+	public void checkAnInvalid13DigitISBNWithCharacter() {
+		ValidateISBN validator = new ValidateISBN();
+		assertThrows(NumberFormatException.class, 
+				() -> {
+					validator.checkISBN("9786853267X36");
+				});
 	}
 	
 	@Test
@@ -49,6 +67,33 @@ class ValidateISBNTest {
 		assertThrows(NumberFormatException.class, 
 				() -> {
 					validator.checkISBN("123456789");
+				});
+	}
+
+	@Test
+	public void elevenDigitISBNsAreNotAllowed() {
+		ValidateISBN validator = new ValidateISBN();
+		assertThrows(NumberFormatException.class, 
+				() -> {
+					validator.checkISBN("12345678901");
+				});
+	}
+
+	@Test
+	public void twelveDigitISBNsAreNotAllowed() {
+		ValidateISBN validator = new ValidateISBN();
+		assertThrows(NumberFormatException.class, 
+				() -> {
+					validator.checkISBN("123456789012");
+				});
+	}
+
+	@Test
+	public void fourteenDigitISBNsAreNotAllowed() {
+		ValidateISBN validator = new ValidateISBN();
+		assertThrows(NumberFormatException.class, 
+				() -> {
+					validator.checkISBN("12345678901234");
 				});
 	}
 	
