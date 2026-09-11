@@ -19,7 +19,7 @@ public class SwaggerConfig {
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("Nick Todd")
-                                    .url("http://www.conygre.com")
-                                    .email("nick.todd@conygre.com")));
+                                .url("http://www.conygre.com")
+                                .email("nick.todd@conygre.com")));
     }
 }
